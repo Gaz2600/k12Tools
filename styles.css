@@ -2231,13 +2231,13 @@ input[type="range"]::-moz-range-thumb {
 }
 
 .content-page a {
-    color: #16A34A;
+    color: var(--accent);
     text-decoration: underline;
     text-underline-offset: 3px;
 }
 
 .content-page a:hover {
-    color: #22C55E;
+    color: var(--accent-hover);
 }
 
 /* ===== Idea Modal ===== */
@@ -2645,12 +2645,12 @@ input[type="range"]::-moz-range-thumb {
 }
 
 .legal-links a {
-    color: rgba(226, 232, 240, 0.8);
+    color: var(--accent);
     text-decoration: none;
 }
 
 .legal-links a:hover {
-    color: rgba(226, 232, 240, 1);
+    color: var(--accent-hover);
     text-decoration: underline;
 }
 
