@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="K12 Tools - Free, ad-free classroom tools that work offline without accounts">
+    <meta name="theme-color" content="#1a1a2e">
+    <title>K12 Tools - Free Classroom Tools</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="app">
+        <!-- Left Navigation -->
+        <nav id="sidebar">
+            <div class="sidebar-header">
+                <h1 class="logo">🎓 K12 Tools</h1>
+                <p class="tagline">Free classroom tools</p>
+            </div>
+            <ul id="nav-list" class="nav-list">
+                <!-- Populated by JS -->
+            </ul>
+            <div class="sidebar-footer">
+                <div class="sidebar-btn-row">
+                    <button id="settings-btn" class="nav-btn settings-btn">
+                        <span class="icon">⚙️</span>
+                        <span>Settings</span>
+                    </button>
+                    <button id="idea-btn" class="nav-btn idea-btn" title="Suggest a Tool Idea">
+                        <span class="icon">💡</span>
+                    </button>
+                </div>
+                <button id="donate-btn" class="nav-btn donate-btn">
+                    <span class="icon">❤️</span>
+                    <span>Donate</span>
+                </button>
+                <p class="attribution">A <a href="https://www.littlesprucelabs.com/" target="_blank" rel="noopener">Little Spruce Labs</a> project.</p>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main id="main-content">
+            <header id="tool-header">
+                <div class="header-left">
+                    <button id="menu-toggle" class="menu-toggle" aria-label="Toggle menu">☰</button>
+                    <h2 id="tool-title">Welcome</h2>
+                </div>
+                <div class="header-right">
+                    <button id="fullscreen-btn" class="control-btn" title="Fullscreen (Projector Mode)">
+                        <span class="icon">⛶</span>
+                    </button>
+                </div>
+            </header>
+            <div id="tool-container">
+                <!-- Tool content rendered here -->
+            </div>
+        </main>
+
+        <!-- Settings Modal -->
+        <div id="settings-modal" class="modal hidden">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Settings</h2>
+                    <button class="close-modal" aria-label="Close">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="setting-group">
+                        <label class="setting-label">
+                            <span>Theme</span>
+                            <select id="theme-select">
+                                <option value="dark">Dark Mode</option>
+                                <option value="light">Light Mode</option>
+                            </select>
+                        </label>
+                    </div>
+                    <div class="setting-group">
+                        <button id="clear-data-btn" class="danger-btn">Clear All Local Data</button>
+                        <p class="hint">This will reset all saved student lists and settings.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Idea Suggestion Modal -->
+        <div id="idea-modal" class="modal hidden">
+            <div class="modal-content idea-modal-content">
+                <div class="modal-header">
+                    <h2>💡 Suggest a Classroom Tool</h2>
+                    <button class="close-modal" aria-label="Close">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <p class="idea-intro">K12 Tools is built based on real classroom needs. If you have an idea for a tool that would help you or your students, we'd love to hear it!</p>
+                    <form id="idea-form">
+                        <input type="text" name="company" tabindex="-1" autocomplete="off" hidden>
+                        <div class="form-group">
+                            <label for="idea-title">Idea Title <span class="required">*</span></label>
+                            <input type="text" id="idea-title" name="title" required placeholder="e.g., Classroom Seating Randomizer">
+                        </div>
+                        <div class="form-group">
+                            <label for="idea-description">Description <span class="required">*</span></label>
+                            <textarea id="idea-description" name="description" required rows="4" placeholder="Describe the tool and how it would help in the classroom..."></textarea>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="idea-grade">Grade Level(s)</label>
+                                <input type="text" id="idea-grade" name="gradeLevel" placeholder="e.g., K-5, Middle School">
+                            </div>
+                            <div class="form-group">
+                                <label for="idea-subject">Subject</label>
+                                <input type="text" id="idea-subject" name="subject" placeholder="e.g., Math, All Subjects">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="idea-email">Email <span class="optional">(optional)</span></label>
+                            <input type="email" id="idea-email" name="email" placeholder="your@email.com">
+                            <p class="field-hint">Only used if we need to follow up on your idea.</p>
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit" id="idea-submit" class="btn primary-btn">Submit Idea</button>
+                            <p id="idea-status" class="form-status" aria-live="polite"></p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Audio for timer/alerts (generated programmatically) -->
+    <script src="app.js"></script>
+</body>
+</html>
