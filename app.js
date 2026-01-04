@@ -3761,7 +3761,12 @@ function renderITInfo() {
                 <h3 class="section-title">Self-Hosting</h3>
                 <p>To host K12 Tools on your district's internal servers:</p>
                 <ol class="it-steps">
-                    <li>Download the three files: <a href="/index.html" download class="download-link">index.html</a>, <a href="/styles.css" download class="download-link">styles.css</a>, <a href="/app.js" download class="download-link">app.js</a></li>
+                    <li>
+                    Download the three files:
+                    <a href="index.html" download="index.html" class="download-link">index.html</a>,
+                    <a href="styles.css" download="styles.css" class="download-link">styles.css</a>,
+                    <a href="app.js" download="app.js" class="download-link">app.js</a>
+                    </li>
                     <li>Place them in any web-accessible directory</li>
                     <li>No build process, database, or server-side code required</li>
                 </ol>
