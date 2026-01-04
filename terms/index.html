@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Terms of Use for K12 Tools, an ad-free set of classroom utilities for K-12 schools.">
+    <meta name="theme-color" content="#1a1a2e">
+    <title>Terms of Use - K12 Tools</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+
+<body>
+    <div id="app">
+        <nav id="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">K12 Tools</div>
+                <p class="tagline">Free classroom tools</p>
+            </div>
+            <ul id="nav-list" class="nav-list">
+                <li class="nav-item">
+                    <a class="nav-btn" href="../index.html">
+                        <span class="icon">&bull;</span>
+                        <span>Tools Home</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-btn" href="../about/">
+                        <span class="icon">&bull;</span>
+                        <span>About</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-btn" href="../contact/">
+                        <span class="icon">&bull;</span>
+                        <span>Contact</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-btn" href="../privacy/">
+                        <span class="icon">&bull;</span>
+                        <span>Privacy</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-btn active" href="../terms/">
+                        <span class="icon">&bull;</span>
+                        <span>Terms</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-btn" href="../safety/">
+                        <span class="icon">&bull;</span>
+                        <span>School Safety</span>
+                    </a>
+                </li>
+            </ul>
+            <div class="sidebar-footer"></div>
+        </nav>
+
+        <main id="main-content">
+            <header id="tool-header">
+                <div class="header-left">
+                    <button id="menu-toggle" class="menu-toggle" aria-label="Toggle menu">Menu</button>
+                    <h1 id="tool-title">Terms of Use</h1>
+                </div>
+            </header>
+            <div id="tool-container">
+                <div class="tool-panel static-page">
+                    <div class="tool-section page-content">
+                        <p class="page-lede">K12 Tools is provided for classroom use. By using the site, you agree to these simple terms.</p>
+
+                        <div>
+                            <h2 class="page-heading">Use of the tools</h2>
+                            <ul class="page-list">
+                                <li>Educational use is encouraged.</li>
+                                <li>Do not attack the site or misuse the tools.</li>
+                                <li>You are responsible for how the tools are used in your classroom or district.</li>
+                            </ul>
+                        </div>
+
+                        <div>
+                            <h2 class="page-heading">Provided as-is</h2>
+                            <p>K12 Tools is provided as-is with no warranty. We do our best to keep it reliable, but availability is not guaranteed.</p>
+                        </div>
+
+                        <div>
+                            <h2 class="page-heading">Concerns or takedown requests</h2>
+                            <p>If you have a concern, request, or takedown notice, please contact us so we can address it quickly.</p>
+                            <div class="page-links">
+                                <a href="../contact/">Contact</a>
+                                <a href="https://github.com/Gaz2600/k12Tools">K12 Tools on GitHub</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <footer class="site-footer">
+            <p class="attribution">A <a href="https://www.littlesprucelabs.com/" target="_blank" rel="noopener">Little Spruce Labs</a> project.</p>
+            <div class="footer-links">
+                <a href="/about/">About</a>
+                <a href="/safety/">Safety</a>
+                <a href="/privacy/">Privacy</a>
+                <a href="/terms/">Terms</a>
+                <a href="/contact/">Contact</a>
+            </div>
+        </footer>
+        </main>
+    </div>
+
+    <script>
+        const menuToggle = document.getElementById('menu-toggle');
+        if (menuToggle) {
+            menuToggle.addEventListener('click', () => {
+                document.getElementById('sidebar').classList.toggle('open');
+            });
+        }
+    </script>
+</body>
+
+</html>

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="K12 Tools - Free, ad-free classroom tools that work offline without accounts">
+    <meta name="description" content="K12 Tools provides fast, ad-free classroom tools that work offline without accounts.">
     <meta name="theme-color" content="#1a1a2e">
     <title>K12 Tools - Free Classroom Tools</title>
     <link rel="stylesheet" href="styles.css">
@@ -15,7 +15,7 @@
         <!-- Left Navigation -->
         <nav id="sidebar">
             <div class="sidebar-header">
-                <h1 class="logo">🎓 K12 Tools</h1>
+                <button id="home-btn" class="logo" type="button">K12 Tools</button>
                 <p class="tagline">Free classroom tools</p>
             </div>
             <ul id="nav-list" class="nav-list">
@@ -35,8 +35,6 @@
                     <span class="icon">❤️</span>
                     <span>Donate</span>
                 </button>
-                <p class="attribution">A <a href="https://www.littlesprucelabs.com/" target="_blank"
-                        rel="noopener">Little Spruce Labs</a> project.</p>
             </div>
         </nav>
 
@@ -45,7 +43,7 @@
             <header id="tool-header">
                 <div class="header-left">
                     <button id="menu-toggle" class="menu-toggle" aria-label="Toggle menu">☰</button>
-                    <h2 id="tool-title"></h2>
+                    <h1 id="tool-title"></h1>
                 </div>
                 <div class="header-right">
                     <button id="fullscreen-btn" class="control-btn" title="Fullscreen (Projector Mode)">
@@ -56,6 +54,16 @@
             <div id="tool-container">
                 <!-- Tool content rendered here -->
             </div>
+        <footer class="site-footer">
+            <p class="attribution">A <a href="https://www.littlesprucelabs.com/" target="_blank" rel="noopener">Little Spruce Labs</a> project.</p>
+            <div class="footer-links">
+                <a href="/about/">About</a>
+                <a href="/safety/">Safety</a>
+                <a href="/privacy/">Privacy</a>
+                <a href="/terms/">Terms</a>
+                <a href="/contact/">Contact</a>
+            </div>
+        </footer>
         </main>
 
         <!-- Settings Modal -->

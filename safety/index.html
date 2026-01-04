@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="School Safety and IT assurance details for K12 Tools, built for safe K-12 networks.">
+    <meta name="theme-color" content="#1a1a2e">
+    <title>School Safety & IT Assurance - K12 Tools</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+
+<body>
+    <div id="app">
+        <nav id="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">K12 Tools</div>
+                <p class="tagline">Free classroom tools</p>
+            </div>
+            <ul id="nav-list" class="nav-list">
+                <li class="nav-item">
+                    <a class="nav-btn" href="../index.html">
+                        <span class="icon">&bull;</span>
+                        <span>Tools Home</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-btn" href="../about/">
+                        <span class="icon">&bull;</span>
+                        <span>About</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-btn" href="../contact/">
+                        <span class="icon">&bull;</span>
+                        <span>Contact</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-btn" href="../privacy/">
+                        <span class="icon">&bull;</span>
+                        <span>Privacy</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-btn" href="../terms/">
+                        <span class="icon">&bull;</span>
+                        <span>Terms</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-btn active" href="../safety/">
+                        <span class="icon">&bull;</span>
+                        <span>School Safety</span>
+                    </a>
+                </li>
+            </ul>
+            <div class="sidebar-footer"></div>
+        </nav>
+
+        <main id="main-content">
+            <header id="tool-header">
+                <div class="header-left">
+                    <button id="menu-toggle" class="menu-toggle" aria-label="Toggle menu">Menu</button>
+                    <h1 id="tool-title">School Safety & IT Assurance</h1>
+                </div>
+            </header>
+            <div id="tool-container">
+                <div class="tool-panel static-page">
+                    <div class="tool-section page-content">
+                        <p class="page-lede">K12 Tools is designed to be safe for school environments with strict content filters, privacy requirements, and classroom display needs.</p>
+
+                        <div>
+                            <h2 class="page-heading">Designed for school networks</h2>
+                            <p>Built to avoid common reasons classroom sites get blocked, including ads, trackers, and heavy scripts.</p>
+                        </div>
+
+                        <div>
+                            <h2 class="page-heading">No ads, no trackers</h2>
+                            <p>K12 Tools does not run ads, pixels, retargeting, or analytics trackers.</p>
+                        </div>
+
+                        <div>
+                            <h2 class="page-heading">Student data</h2>
+                            <p>No logins, no student profiles, no collection of student personal info. Tools run locally in the browser when possible.</p>
+                        </div>
+
+                        <div>
+                            <h2 class="page-heading">Content & categorization</h2>
+                            <p>This site provides educational utilities for teachers and classrooms.</p>
+                            <p>Suggested filter category: Education / Reference / Teacher Tools</p>
+                        </div>
+
+                        <div>
+                            <h2 class="page-heading">Security</h2>
+                            <ul class="page-list">
+                                <li>HTTPS</li>
+                                <li>Hosted behind Cloudflare</li>
+                                <li>Minimal dependencies</li>
+                            </ul>
+                        </div>
+
+                        <div>
+                            <h2 class="page-heading">Contact for filter vendors / district IT</h2>
+                            <p>If your filter blocked this site, contact us and we'll help get it categorized correctly.</p>
+                            <div class="page-links">
+                                <a href="../contact/">Contact</a>
+                                <a href="https://github.com/Gaz2600/k12Tools">Source code (GitHub)</a>
+                                <a href="https://github.com/Gaz2600/k12Tools/issues">GitHub Issues</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <footer class="site-footer">
+            <p class="attribution">A <a href="https://www.littlesprucelabs.com/" target="_blank" rel="noopener">Little Spruce Labs</a> project.</p>
+            <div class="footer-links">
+                <a href="/about/">About</a>
+                <a href="/safety/">Safety</a>
+                <a href="/privacy/">Privacy</a>
+                <a href="/terms/">Terms</a>
+                <a href="/contact/">Contact</a>
+            </div>
+        </footer>
+        </main>
+    </div>
+
+    <script>
+        const menuToggle = document.getElementById('menu-toggle');
+        if (menuToggle) {
+            menuToggle.addEventListener('click', () => {
+                document.getElementById('sidebar').classList.toggle('open');
+            });
+        }
+    </script>
+</body>
+
+</html>

@@ -9,6 +9,12 @@ const CONFIG = {
     theme: localStorage.getItem('theme') || 'dark'
 };
 
+const DEFAULT_META = {
+    title: 'K12 Tools - Free Classroom Tools',
+    description: 'K12 Tools provides fast, ad-free classroom tools that work offline without accounts.',
+    h1: 'K12 Tools'
+};
+
 // ===== App State =====
 const state = {
     currentTool: null,
@@ -142,93 +148,168 @@ const tools = [
         id: 'timer',
         name: 'Countdown Timer',
         icon: '⏱️',
-        render: renderTimer
+        render: renderTimer,
+        meta: {
+            title: 'Countdown Timer - K12 Tools',
+            description: 'Simple, ad-free classroom countdown timer with presets, custom time, and fullscreen projector mode.',
+            h1: 'Countdown Timer'
+        }
     },
     {
         id: 'stopwatch',
         name: 'Stopwatch',
         icon: '⏲️',
-        render: renderStopwatch
+        render: renderStopwatch,
+        meta: {
+            title: 'Stopwatch - K12 Tools',
+            description: 'Clean, ad-free classroom stopwatch with lap tracking and fullscreen display.',
+            h1: 'Stopwatch'
+        }
     },
     {
         id: 'picker',
         name: 'Student Picker',
         icon: '🎯',
-        render: renderPicker
+        render: renderPicker,
+        meta: {
+            title: 'Student Picker - K12 Tools',
+            description: 'Ad-free student picker with no-repeat options and history tracking.',
+            h1: 'Student Picker'
+        }
     },
     {
         id: 'groups',
         name: 'Group Maker',
         icon: '👥',
-        render: renderGroups
+        render: renderGroups,
+        meta: {
+            title: 'Group Maker - K12 Tools',
+            description: 'Ad-free group maker for fast student grouping with adjustable sizes.',
+            h1: 'Group Maker'
+        }
     },
     {
         id: 'noise',
         name: 'Noise Meter',
         icon: '🔊',
-        render: renderNoise
+        render: renderNoise,
+        meta: {
+            title: 'Noise Meter - K12 Tools',
+            description: 'Ad-free classroom noise meter with adjustable sensitivity and thresholds.',
+            h1: 'Noise Meter'
+        }
     },
     {
         id: 'dice',
         name: 'Dice & RNG',
         icon: '🎲',
-        render: renderDice
+        render: renderDice,
+        meta: {
+            title: 'Dice & RNG - K12 Tools',
+            description: 'Ad-free dice roller and random number generator for classroom activities.',
+            h1: 'Dice & RNG'
+        }
     },
     {
         id: 'qr',
         name: 'QR Generator',
         icon: '📱',
-        render: renderQR
+        render: renderQR,
+        meta: {
+            title: 'QR Generator - K12 Tools',
+            description: 'Ad-free QR code generator for links or text with offline-ready output.',
+            h1: 'QR Generator'
+        }
     },
     // Phase 2 Tools
     {
         id: 'agenda',
         name: 'Agenda Board',
         icon: '📋',
-        render: renderAgenda
+        render: renderAgenda,
+        meta: {
+            title: 'Agenda Board - K12 Tools',
+            description: 'Ad-free agenda board for safe school networks with blocks and presets.',
+            h1: 'Agenda Board'
+        }
     },
     {
         id: 'teams',
         name: 'Team Points',
         icon: '🏆',
-        render: renderTeams
+        render: renderTeams,
+        meta: {
+            title: 'Team Points - K12 Tools',
+            description: 'Ad-free team points tracker with large, projector-friendly controls.',
+            h1: 'Team Points'
+        }
     },
     {
         id: 'traffic',
         name: 'Traffic Light',
         icon: '🚦',
-        render: renderTraffic
+        render: renderTraffic,
+        meta: {
+            title: 'Traffic Light - K12 Tools',
+            description: 'Ad-free classroom traffic light signals safe for school networks.',
+            h1: 'Traffic Light'
+        }
     },
     {
         id: 'station',
         name: 'Station Timer',
         icon: '🔄',
-        render: renderStation
+        render: renderStation,
+        meta: {
+            title: 'Station Timer - K12 Tools',
+            description: 'Ad-free station timer for rotations with labeled durations.',
+            h1: 'Station Timer'
+        }
     },
     {
         id: 'seating',
         name: 'Seating Chart',
         icon: '🪑',
-        render: renderSeating
+        render: renderSeating,
+        meta: {
+            title: 'Seating Chart - K12 Tools',
+            description: 'Ad-free seating chart with saved rosters and layouts.',
+            h1: 'Seating Chart'
+        }
     },
     {
         id: 'soundboard',
         name: 'Soundboard',
         icon: '🔔',
-        render: renderSoundboard
+        render: renderSoundboard,
+        meta: {
+            title: 'Soundboard - K12 Tools',
+            description: 'Ad-free classroom soundboard with large buttons and volume control.',
+            h1: 'Soundboard'
+        }
     },
     {
         id: 'bingo',
         name: 'Bingo Generator',
         icon: '🎱',
-        render: renderBingo
+        render: renderBingo,
+        meta: {
+            title: 'Bingo Generator - K12 Tools',
+            description: 'Ad-free bingo card generator with printable output.',
+            h1: 'Bingo Generator'
+        }
     },
     // Info Pages
     {
         id: 'itinfo',
         name: 'For IT Staff',
         icon: '🔒',
-        render: renderITInfo
+        render: renderITInfo,
+        meta: {
+            title: 'For IT Staff - K12 Tools',
+            description: 'Ad-free privacy, security, and hosting details for K12 Tools.',
+            h1: 'For IT Staff'
+        }
     }
 ];
 
@@ -377,6 +458,21 @@ function renderNav() {
     });
 }
 
+function applyMeta(meta) {
+    const resolvedMeta = meta || DEFAULT_META;
+    document.title = resolvedMeta.title || DEFAULT_META.title;
+
+    const descTag = document.querySelector('meta[name="description"]');
+    if (descTag) {
+        descTag.setAttribute('content', resolvedMeta.description || DEFAULT_META.description);
+    }
+
+    const titleEl = document.getElementById('tool-title');
+    if (titleEl) {
+        titleEl.textContent = resolvedMeta.h1 || DEFAULT_META.h1;
+    }
+}
+
 function navigateTo(toolId) {
     // Clean up previous tool
     cleanupTool();
@@ -385,9 +481,10 @@ function navigateTo(toolId) {
     const tool = tools.find(t => t.id === toolId);
 
     if (tool) {
-        document.getElementById('tool-title').textContent = tool.name;
+        applyMeta(tool.meta);
         tool.render();
     } else {
+        applyMeta(DEFAULT_META);
         renderWelcome();
     }
 
@@ -432,9 +529,10 @@ function closeSidebar() {
 
 function renderWelcome() {
 
+    applyMeta(DEFAULT_META);
+
     document.getElementById('tool-container').innerHTML = `
         <div class="welcome-screen animate-fade-in">
-            <h1 class="welcome-title">Welcome to K12 Tools</h1>
             <div class="tools-grid">
                 ${tools.map(tool => `
                     <div class="tool-card" data-tool="${tool.id}">
@@ -4087,6 +4185,11 @@ function init() {
     initSettings();
     initIdeaModal();
 
+    const homeBtn = document.getElementById('home-btn');
+    if (homeBtn) {
+        homeBtn.addEventListener('click', () => navigateTo(null));
+    }
+
     // Mobile menu toggle
     document.getElementById('menu-toggle').addEventListener('click', () => {
         document.getElementById('sidebar').classList.toggle('open');
@@ -4125,4 +4228,3 @@ function init() {
 
 // Start the app
 document.addEventListener('DOMContentLoaded', init);
-

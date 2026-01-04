@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Contact K12 Tools for help with ad-free classroom tools built for K-12 schools.">
+    <meta name="theme-color" content="#1a1a2e">
+    <title>Contact - K12 Tools</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+
+<body>
+    <div id="app">
+        <nav id="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">K12 Tools</div>
+                <p class="tagline">Free classroom tools</p>
+            </div>
+            <ul id="nav-list" class="nav-list">
+                <li class="nav-item">
+                    <a class="nav-btn" href="../index.html">
+                        <span class="icon">&bull;</span>
+                        <span>Tools Home</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-btn" href="../about/">
+                        <span class="icon">&bull;</span>
+                        <span>About</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-btn active" href="../contact/">
+                        <span class="icon">&bull;</span>
+                        <span>Contact</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-btn" href="../privacy/">
+                        <span class="icon">&bull;</span>
+                        <span>Privacy</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-btn" href="../terms/">
+                        <span class="icon">&bull;</span>
+                        <span>Terms</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-btn" href="../safety/">
+                        <span class="icon">&bull;</span>
+                        <span>School Safety</span>
+                    </a>
+                </li>
+            </ul>
+            <div class="sidebar-footer"></div>
+        </nav>
+
+        <main id="main-content">
+            <header id="tool-header">
+                <div class="header-left">
+                    <button id="menu-toggle" class="menu-toggle" aria-label="Toggle menu">Menu</button>
+                    <h1 id="tool-title">Contact</h1>
+                </div>
+            </header>
+            <div id="tool-container">
+                <div class="tool-panel static-page">
+                    <div class="tool-section page-content">
+                        <p class="page-lede">K12 Tools is maintained by a small team focused on safe, reliable classroom utilities. The best way to reach us is email.</p>
+
+                        <div>
+                            <h2 class="page-heading">Preferred contact method</h2>
+                            <p>Email: <a href="mailto:support@k12tools.org">support@k12tools.org</a></p>
+                            <p>We read every message and typically respond within a few school days.</p>
+                        </div>
+
+                        <div>
+                            <h2 class="page-heading">Other options</h2>
+                            <div class="page-links">
+                                <a href="https://github.com/Gaz2600/k12Tools/issues">GitHub Issues</a>
+                                <a href="https://github.com/Gaz2600/k12Tools">K12 Tools on GitHub</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <footer class="site-footer">
+            <p class="attribution">A <a href="https://www.littlesprucelabs.com/" target="_blank" rel="noopener">Little Spruce Labs</a> project.</p>
+            <div class="footer-links">
+                <a href="/about/">About</a>
+                <a href="/safety/">Safety</a>
+                <a href="/privacy/">Privacy</a>
+                <a href="/terms/">Terms</a>
+                <a href="/contact/">Contact</a>
+            </div>
+        </footer>
+        </main>
+    </div>
+
+    <script>
+        const menuToggle = document.getElementById('menu-toggle');
+        if (menuToggle) {
+            menuToggle.addEventListener('click', () => {
+                document.getElementById('sidebar').classList.toggle('open');
+            });
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Privacy policy for K12 Tools: ad-free classroom tools with no student data collection.">
+    <meta name="theme-color" content="#1a1a2e">
+    <title>Privacy Policy - K12 Tools</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+
+<body>
+    <div id="app">
+        <nav id="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">K12 Tools</div>
+                <p class="tagline">Free classroom tools</p>
+            </div>
+            <ul id="nav-list" class="nav-list">
+                <li class="nav-item">
+                    <a class="nav-btn" href="../index.html">
+                        <span class="icon">&bull;</span>
+                        <span>Tools Home</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-btn" href="../about/">
+                        <span class="icon">&bull;</span>
+                        <span>About</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-btn" href="../contact/">
+                        <span class="icon">&bull;</span>
+                        <span>Contact</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-btn active" href="../privacy/">
+                        <span class="icon">&bull;</span>
+                        <span>Privacy</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-btn" href="../terms/">
+                        <span class="icon">&bull;</span>
+                        <span>Terms</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-btn" href="../safety/">
+                        <span class="icon">&bull;</span>
+                        <span>School Safety</span>
+                    </a>
+                </li>
+            </ul>
+            <div class="sidebar-footer"></div>
+        </nav>
+
+        <main id="main-content">
+            <header id="tool-header">
+                <div class="header-left">
+                    <button id="menu-toggle" class="menu-toggle" aria-label="Toggle menu">Menu</button>
+                    <h1 id="tool-title">Privacy Policy</h1>
+                </div>
+            </header>
+            <div id="tool-container">
+                <div class="tool-panel static-page">
+                    <div class="tool-section page-content">
+                        <p class="page-lede">K12 Tools is built for schools and does not collect, sell, or share student data. We keep this policy short and readable on purpose.</p>
+
+                        <div>
+                            <h2 class="page-heading">Privacy promises</h2>
+                            <ul class="page-list">
+                                <li>No advertising</li>
+                                <li>No selling data</li>
+                                <li>No tracking for targeted ads</li>
+                                <li>No student accounts</li>
+                                <li>No collection of student personal information</li>
+                                <li>No cookies</li>
+                            </ul>
+                        </div>
+
+                        <div>
+                            <h2 class="page-heading">Local storage only</h2>
+                            <p>Some tools store settings (like student lists or preferences) in the browser using localStorage. This data stays on the device and never leaves the browser.</p>
+                        </div>
+
+                        <div>
+                            <h2 class="page-heading">Standard security logs</h2>
+                            <p>Our hosting provider may keep standard security logs to protect the service. These logs are not used to identify individual users.</p>
+                        </div>
+
+                        <div>
+                            <h2 class="page-heading">Questions</h2>
+                            <div class="page-links">
+                                <a href="../contact/">Contact</a>
+                                <a href="https://github.com/Gaz2600/k12Tools">Source code (GitHub)</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <footer class="site-footer">
+            <p class="attribution">A <a href="https://www.littlesprucelabs.com/" target="_blank" rel="noopener">Little Spruce Labs</a> project.</p>
+            <div class="footer-links">
+                <a href="/about/">About</a>
+                <a href="/safety/">Safety</a>
+                <a href="/privacy/">Privacy</a>
+                <a href="/terms/">Terms</a>
+                <a href="/contact/">Contact</a>
+            </div>
+        </footer>
+        </main>
+    </div>
+
+    <script>
+        const menuToggle = document.getElementById('menu-toggle');
+        if (menuToggle) {
+            menuToggle.addEventListener('click', () => {
+                document.getElementById('sidebar').classList.toggle('open');
+            });
+        }
+    </script>
+</body>
+
+</html>
