@@ -4,10 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="K12 Tools provides fast, ad-free classroom tools that work offline without accounts.">
+    <meta name="description"
+        content="K12 Tools provides fast, ad-free classroom tools that work offline without accounts.">
     <meta name="theme-color" content="#1a1a2e">
     <title>K12 Tools - Free Classroom Tools</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="icon" href="/favicon.ico">
 </head>
 
 <body>
@@ -24,15 +26,17 @@
             <div class="sidebar-footer">
                 <div class="sidebar-btn-row">
                     <button id="settings-btn" class="nav-btn settings-btn">
-                        <span class="icon">⚙️</span>
+                        <span class="icon" aria-hidden="true">&#9881;&#65039;</span>
                         <span>Settings</span>
                     </button>
                     <button id="idea-btn" class="nav-btn idea-btn" title="Suggest a Tool Idea">
-                        <span class="icon">💡</span>
+                        <span class="icon" aria-hidden="true">&#128161;</span>
+
                     </button>
                 </div>
                 <button id="donate-btn" class="nav-btn donate-btn">
-                    <span class="icon">❤️</span>
+                    <span class="icon" aria-hidden="true">&#10084;&#65039;</span>
+
                     <span>Donate</span>
                 </button>
             </div>
@@ -47,23 +51,19 @@
                 </div>
                 <div class="header-right">
                     <button id="fullscreen-btn" class="control-btn" title="Fullscreen (Projector Mode)">
-                        <span class="icon">⛶</span>
+                        <span class="icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none">
+                                <path d="M8 3H3v5M16 3h5v5M8 21H3v-5M16 21h5v-5" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </span>
+
                     </button>
                 </div>
             </header>
             <div id="tool-container">
                 <!-- Tool content rendered here -->
             </div>
-        <footer class="site-footer">
-            <p class="attribution">A <a href="https://www.littlesprucelabs.com/" target="_blank" rel="noopener">Little Spruce Labs</a> project.</p>
-            <div class="footer-links">
-                <a href="/about/">About</a>
-                <a href="/safety/">Safety</a>
-                <a href="/privacy/">Privacy</a>
-                <a href="/terms/">Terms</a>
-                <a href="/contact/">Contact</a>
-            </div>
-        </footer>
         </main>
 
         <!-- Settings Modal -->
@@ -141,7 +141,25 @@
     </div>
 
     <!-- Audio for timer/alerts (generated programmatically) -->
-    <script src="app.js"></script>
+    <script src="/app.js" defer></script>
+    <footer class="legal-bar" role="contentinfo">
+        <div class="legal-inner">
+            <div class="legal-spacer" aria-hidden="true"></div>
+
+            <nav class="legal-links" aria-label="Site information">
+                <a href="/about/">About</a>
+                <a href="/safety/">Safety</a>
+                <a href="/privacy/">Privacy</a>
+                <a href="/terms/">Terms</a>
+                <a href="/contact/">Contact</a>
+            </nav>
+
+            <span class="legal-project">
+                A <a href="https://www.littlesprucelabs.com" rel="noopener">Little Spruce Labs</a> project.
+            </span>
+        </div>
+    </footer>
+
 </body>
 
 </html>

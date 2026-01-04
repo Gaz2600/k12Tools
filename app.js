@@ -4180,10 +4180,15 @@ function applyTheme(theme) {
 // ===== Initialization =====
 
 function init() {
+    const isStaticPage = document.body.dataset.page === 'static';
+
     renderNav();
-    renderWelcome();
     initSettings();
     initIdeaModal();
+
+    if (!isStaticPage) {
+        renderWelcome();
+    }
 
     const homeBtn = document.getElementById('home-btn');
     if (homeBtn) {
