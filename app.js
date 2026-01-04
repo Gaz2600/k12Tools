@@ -326,14 +326,14 @@ function toggleFullscreen() {
 
         // Try native fullscreen
         if (document.documentElement.requestFullscreen) {
-            document.documentElement.requestFullscreen().catch(() => {});
+            document.documentElement.requestFullscreen().catch(() => { });
         }
     } else {
         const exitBtn = document.querySelector('.fullscreen-exit');
         if (exitBtn) exitBtn.remove();
 
         if (document.exitFullscreen && document.fullscreenElement) {
-            document.exitFullscreen().catch(() => {});
+            document.exitFullscreen().catch(() => { });
         }
     }
 
@@ -431,11 +431,10 @@ function closeSidebar() {
 // ===== Welcome Screen =====
 
 function renderWelcome() {
-    document.getElementById('tool-title').textContent = 'Welcome';
+
     document.getElementById('tool-container').innerHTML = `
         <div class="welcome-screen animate-fade-in">
             <h1 class="welcome-title">Welcome to K12 Tools</h1>
-            <p class="welcome-subtitle">Free, ad-free classroom tools that work offline</p>
             <div class="tools-grid">
                 ${tools.map(tool => `
                     <div class="tool-card" data-tool="${tool.id}">
@@ -1371,8 +1370,8 @@ function showDiceFullscreen() {
         <div class="fullscreen-content dice-fullscreen">
             <div class="fullscreen-dice-display" id="fullscreen-dice-display">
                 ${state.dice.results.length > 0
-                    ? state.dice.results.map(r => `<div class="die-large">${r}</div>`).join('')
-                    : '<span class="dice-prompt">Click Roll</span>'}
+            ? state.dice.results.map(r => `<div class="die-large">${r}</div>`).join('')
+            : '<span class="dice-prompt">Click Roll</span>'}
             </div>
             <div class="fullscreen-dice-sum" id="fullscreen-dice-sum">
                 ${state.dice.results.length > 1 ? 'Total: ' + state.dice.results.reduce((a, b) => a + b, 0) : ''}
@@ -1525,7 +1524,7 @@ function showRNGFullscreen() {
 // ===== QR Code Generator =====
 
 // Standard QR library (qr.js) with module-perfect canvas rendering.
-const QRCode = (function() {
+const QRCode = (function () {
     const QRMode = {
         MODE_NUMBER: 1 << 0,
         MODE_ALPHA_NUM: 1 << 1,
@@ -1575,13 +1574,13 @@ const QRCode = (function() {
             this.num[i] = num[i + offset];
         }
     }
-    QRPolynomial.prototype.get = function(index) {
+    QRPolynomial.prototype.get = function (index) {
         return this.num[index];
     };
-    QRPolynomial.prototype.getLength = function() {
+    QRPolynomial.prototype.getLength = function () {
         return this.num.length;
     };
-    QRPolynomial.prototype.multiply = function(e) {
+    QRPolynomial.prototype.multiply = function (e) {
         const num = new Array(this.getLength() + e.getLength() - 1);
         for (let i = 0; i < num.length; i++) num[i] = 0;
         for (let i = 0; i < this.getLength(); i++) {
@@ -1591,7 +1590,7 @@ const QRCode = (function() {
         }
         return new QRPolynomial(num, 0);
     };
-    QRPolynomial.prototype.mod = function(e) {
+    QRPolynomial.prototype.mod = function (e) {
         if (this.getLength() - e.getLength() < 0) return this;
         const ratio = QRMath.glog(this.get(0)) - QRMath.glog(e.get(0));
         const num = new Array(this.getLength());
@@ -1608,19 +1607,19 @@ const QRCode = (function() {
         this.buffer = [];
         this.length = 0;
     }
-    QRBitBuffer.prototype.get = function(index) {
+    QRBitBuffer.prototype.get = function (index) {
         const bufIndex = Math.floor(index / 8);
         return ((this.buffer[bufIndex] >>> (7 - index % 8)) & 1) === 1;
     };
-    QRBitBuffer.prototype.put = function(num, length) {
+    QRBitBuffer.prototype.put = function (num, length) {
         for (let i = 0; i < length; i++) {
             this.putBit(((num >>> (length - i - 1)) & 1) === 1);
         }
     };
-    QRBitBuffer.prototype.getLengthInBits = function() {
+    QRBitBuffer.prototype.getLengthInBits = function () {
         return this.length;
     };
-    QRBitBuffer.prototype.putBit = function(bit) {
+    QRBitBuffer.prototype.putBit = function (bit) {
         const bufIndex = Math.floor(this.length / 8);
         if (this.buffer.length <= bufIndex) this.buffer.push(0);
         if (bit) this.buffer[bufIndex] |= (0x80 >>> (this.length % 8));
@@ -1631,62 +1630,62 @@ const QRCode = (function() {
         this.mode = QRMode.MODE_8BIT_BYTE;
         this.data = data;
     }
-    QR8BitByte.prototype.getLength = function() {
+    QR8BitByte.prototype.getLength = function () {
         return this.data.length;
     };
-    QR8BitByte.prototype.write = function(buffer) {
+    QR8BitByte.prototype.write = function (buffer) {
         for (let i = 0; i < this.data.length; i++) {
             buffer.put(this.data.charCodeAt(i), 8);
         }
     };
 
-    const QRRSBlock = (function() {
+    const QRRSBlock = (function () {
         function Block(totalCount, dataCount) {
             this.totalCount = totalCount;
             this.dataCount = dataCount;
         }
 
         const RS_BLOCK_TABLE = [
-            [1, 26, 19],[1, 26, 16],[1, 26, 13],[1, 26, 9],
-            [1, 44, 34],[1, 44, 28],[1, 44, 22],[1, 44, 16],
-            [1, 70, 55],[1, 70, 44],[2, 35, 17],[2, 35, 13],
-            [1, 100, 80],[2, 50, 32],[2, 50, 24],[4, 25, 9],
-            [1, 134, 108],[2, 67, 43],[2, 33, 15, 2, 34, 16],[2, 33, 11, 2, 34, 12],
-            [2, 86, 68],[4, 43, 27],[4, 43, 19],[4, 43, 15],
-            [2, 98, 78],[4, 49, 31],[2, 32, 14, 4, 33, 15],[4, 39, 13, 1, 40, 14],
-            [2, 121, 97],[2, 60, 38, 2, 61, 39],[4, 40, 18, 2, 41, 19],[4, 40, 14, 2, 41, 15],
-            [2, 146, 116],[3, 58, 36, 2, 59, 37],[4, 36, 16, 4, 37, 17],[4, 36, 12, 4, 37, 13],
-            [2, 86, 68, 2, 87, 69],[4, 69, 43, 1, 70, 44],[6, 43, 19, 2, 44, 20],[6, 43, 15, 2, 44, 16],
-            [4, 101, 81],[1, 80, 50, 4, 81, 51],[4, 50, 22, 4, 51, 23],[3, 36, 12, 8, 37, 13],
-            [2, 116, 92, 2, 117, 93],[6, 58, 36, 2, 59, 37],[4, 46, 20, 6, 47, 21],[7, 42, 14, 4, 43, 15],
-            [4, 133, 107],[8, 59, 37, 1, 60, 38],[8, 44, 20, 4, 45, 21],[12, 33, 11, 4, 34, 12],
-            [3, 145, 115, 1, 146, 116],[4, 64, 40, 5, 65, 41],[11, 36, 16, 5, 37, 17],[11, 36, 12, 5, 37, 13],
-            [5, 109, 87, 1, 110, 88],[5, 65, 41, 5, 66, 42],[5, 54, 24, 7, 55, 25],[11, 36, 12],
-            [5, 122, 98, 1, 123, 99],[7, 73, 45, 3, 74, 46],[15, 43, 19, 2, 44, 20],[3, 45, 15, 13, 46, 16],
-            [1, 135, 107, 5, 136, 108],[10, 74, 46, 1, 75, 47],[1, 50, 22, 15, 51, 23],[2, 42, 14, 17, 43, 15],
-            [5, 150, 120, 1, 151, 121],[9, 69, 43, 4, 70, 44],[17, 50, 22, 1, 51, 23],[2, 42, 14, 19, 43, 15],
-            [3, 141, 113, 4, 142, 114],[3, 70, 44, 11, 71, 45],[17, 47, 21, 4, 48, 22],[9, 39, 13, 16, 40, 14],
-            [3, 135, 107, 5, 136, 108],[3, 67, 41, 13, 68, 42],[15, 54, 24, 5, 55, 25],[15, 43, 15, 10, 44, 16],
-            [4, 144, 116, 4, 145, 117],[17, 68, 42],[17, 50, 22, 6, 51, 23],[19, 46, 16, 6, 47, 17],
-            [2, 139, 111, 7, 140, 112],[17, 74, 46],[7, 54, 24, 16, 55, 25],[34, 37, 13],
-            [4, 151, 121, 5, 152, 122],[4, 75, 47, 14, 76, 48],[11, 54, 24, 14, 55, 25],[16, 45, 15, 14, 46, 16],
-            [6, 147, 117, 4, 148, 118],[6, 73, 45, 14, 74, 46],[11, 54, 24, 16, 55, 25],[30, 46, 16, 2, 47, 17],
-            [8, 132, 106, 4, 133, 107],[8, 75, 47, 13, 76, 48],[7, 54, 24, 22, 55, 25],[22, 45, 15, 13, 46, 16],
-            [10, 142, 114, 2, 143, 115],[19, 74, 46, 4, 75, 47],[28, 50, 22, 6, 51, 23],[33, 46, 16, 4, 47, 17],
-            [8, 152, 122, 4, 153, 123],[22, 73, 45, 3, 74, 46],[8, 53, 23, 26, 54, 24],[12, 45, 15, 28, 46, 16],
-            [3, 147, 117, 10, 148, 118],[3, 73, 45, 23, 74, 46],[4, 54, 24, 31, 55, 25],[11, 45, 15, 31, 46, 16],
-            [7, 146, 116, 7, 147, 117],[21, 73, 45, 7, 74, 46],[1, 53, 23, 37, 54, 24],[19, 45, 15, 26, 46, 16],
-            [5, 145, 115, 10, 146, 116],[19, 75, 47, 10, 76, 48],[15, 54, 24, 25, 55, 25],[23, 45, 15, 25, 46, 16],
-            [13, 145, 115, 3, 146, 116],[2, 74, 46, 29, 75, 47],[42, 54, 24, 1, 55, 25],[23, 45, 15, 28, 46, 16],
-            [17, 145, 115],[10, 74, 46, 23, 75, 47],[10, 54, 24, 35, 55, 25],[19, 45, 15, 35, 46, 16],
-            [17, 145, 115, 1, 146, 116],[14, 74, 46, 21, 75, 47],[29, 54, 24, 19, 55, 25],[11, 45, 15, 46, 46, 16],
-            [13, 145, 115, 6, 146, 116],[14, 74, 46, 23, 75, 47],[44, 54, 24, 7, 55, 25],[59, 46, 16, 1, 47, 17],
-            [12, 151, 121, 7, 152, 122],[12, 75, 47, 26, 76, 48],[39, 54, 24, 14, 55, 25],[22, 45, 15, 41, 46, 16],
-            [6, 151, 121, 14, 152, 122],[6, 75, 47, 34, 76, 48],[46, 54, 24, 10, 55, 25],[2, 45, 15, 64, 46, 16],
-            [17, 152, 122, 4, 153, 123],[29, 74, 46, 14, 75, 47],[49, 54, 24, 10, 55, 25],[24, 45, 15, 46, 46, 16],
-            [4, 152, 122, 18, 153, 123],[13, 74, 46, 32, 75, 47],[48, 54, 24, 14, 55, 25],[42, 45, 15, 32, 46, 16],
-            [20, 147, 117, 4, 148, 118],[40, 75, 47, 7, 76, 48],[43, 54, 24, 22, 55, 25],[10, 45, 15, 67, 46, 16],
-            [19, 148, 118, 6, 149, 119],[18, 75, 47, 31, 76, 48],[34, 54, 24, 34, 55, 25],[20, 45, 15, 61, 46, 16]
+            [1, 26, 19], [1, 26, 16], [1, 26, 13], [1, 26, 9],
+            [1, 44, 34], [1, 44, 28], [1, 44, 22], [1, 44, 16],
+            [1, 70, 55], [1, 70, 44], [2, 35, 17], [2, 35, 13],
+            [1, 100, 80], [2, 50, 32], [2, 50, 24], [4, 25, 9],
+            [1, 134, 108], [2, 67, 43], [2, 33, 15, 2, 34, 16], [2, 33, 11, 2, 34, 12],
+            [2, 86, 68], [4, 43, 27], [4, 43, 19], [4, 43, 15],
+            [2, 98, 78], [4, 49, 31], [2, 32, 14, 4, 33, 15], [4, 39, 13, 1, 40, 14],
+            [2, 121, 97], [2, 60, 38, 2, 61, 39], [4, 40, 18, 2, 41, 19], [4, 40, 14, 2, 41, 15],
+            [2, 146, 116], [3, 58, 36, 2, 59, 37], [4, 36, 16, 4, 37, 17], [4, 36, 12, 4, 37, 13],
+            [2, 86, 68, 2, 87, 69], [4, 69, 43, 1, 70, 44], [6, 43, 19, 2, 44, 20], [6, 43, 15, 2, 44, 16],
+            [4, 101, 81], [1, 80, 50, 4, 81, 51], [4, 50, 22, 4, 51, 23], [3, 36, 12, 8, 37, 13],
+            [2, 116, 92, 2, 117, 93], [6, 58, 36, 2, 59, 37], [4, 46, 20, 6, 47, 21], [7, 42, 14, 4, 43, 15],
+            [4, 133, 107], [8, 59, 37, 1, 60, 38], [8, 44, 20, 4, 45, 21], [12, 33, 11, 4, 34, 12],
+            [3, 145, 115, 1, 146, 116], [4, 64, 40, 5, 65, 41], [11, 36, 16, 5, 37, 17], [11, 36, 12, 5, 37, 13],
+            [5, 109, 87, 1, 110, 88], [5, 65, 41, 5, 66, 42], [5, 54, 24, 7, 55, 25], [11, 36, 12],
+            [5, 122, 98, 1, 123, 99], [7, 73, 45, 3, 74, 46], [15, 43, 19, 2, 44, 20], [3, 45, 15, 13, 46, 16],
+            [1, 135, 107, 5, 136, 108], [10, 74, 46, 1, 75, 47], [1, 50, 22, 15, 51, 23], [2, 42, 14, 17, 43, 15],
+            [5, 150, 120, 1, 151, 121], [9, 69, 43, 4, 70, 44], [17, 50, 22, 1, 51, 23], [2, 42, 14, 19, 43, 15],
+            [3, 141, 113, 4, 142, 114], [3, 70, 44, 11, 71, 45], [17, 47, 21, 4, 48, 22], [9, 39, 13, 16, 40, 14],
+            [3, 135, 107, 5, 136, 108], [3, 67, 41, 13, 68, 42], [15, 54, 24, 5, 55, 25], [15, 43, 15, 10, 44, 16],
+            [4, 144, 116, 4, 145, 117], [17, 68, 42], [17, 50, 22, 6, 51, 23], [19, 46, 16, 6, 47, 17],
+            [2, 139, 111, 7, 140, 112], [17, 74, 46], [7, 54, 24, 16, 55, 25], [34, 37, 13],
+            [4, 151, 121, 5, 152, 122], [4, 75, 47, 14, 76, 48], [11, 54, 24, 14, 55, 25], [16, 45, 15, 14, 46, 16],
+            [6, 147, 117, 4, 148, 118], [6, 73, 45, 14, 74, 46], [11, 54, 24, 16, 55, 25], [30, 46, 16, 2, 47, 17],
+            [8, 132, 106, 4, 133, 107], [8, 75, 47, 13, 76, 48], [7, 54, 24, 22, 55, 25], [22, 45, 15, 13, 46, 16],
+            [10, 142, 114, 2, 143, 115], [19, 74, 46, 4, 75, 47], [28, 50, 22, 6, 51, 23], [33, 46, 16, 4, 47, 17],
+            [8, 152, 122, 4, 153, 123], [22, 73, 45, 3, 74, 46], [8, 53, 23, 26, 54, 24], [12, 45, 15, 28, 46, 16],
+            [3, 147, 117, 10, 148, 118], [3, 73, 45, 23, 74, 46], [4, 54, 24, 31, 55, 25], [11, 45, 15, 31, 46, 16],
+            [7, 146, 116, 7, 147, 117], [21, 73, 45, 7, 74, 46], [1, 53, 23, 37, 54, 24], [19, 45, 15, 26, 46, 16],
+            [5, 145, 115, 10, 146, 116], [19, 75, 47, 10, 76, 48], [15, 54, 24, 25, 55, 25], [23, 45, 15, 25, 46, 16],
+            [13, 145, 115, 3, 146, 116], [2, 74, 46, 29, 75, 47], [42, 54, 24, 1, 55, 25], [23, 45, 15, 28, 46, 16],
+            [17, 145, 115], [10, 74, 46, 23, 75, 47], [10, 54, 24, 35, 55, 25], [19, 45, 15, 35, 46, 16],
+            [17, 145, 115, 1, 146, 116], [14, 74, 46, 21, 75, 47], [29, 54, 24, 19, 55, 25], [11, 45, 15, 46, 46, 16],
+            [13, 145, 115, 6, 146, 116], [14, 74, 46, 23, 75, 47], [44, 54, 24, 7, 55, 25], [59, 46, 16, 1, 47, 17],
+            [12, 151, 121, 7, 152, 122], [12, 75, 47, 26, 76, 48], [39, 54, 24, 14, 55, 25], [22, 45, 15, 41, 46, 16],
+            [6, 151, 121, 14, 152, 122], [6, 75, 47, 34, 76, 48], [46, 54, 24, 10, 55, 25], [2, 45, 15, 64, 46, 16],
+            [17, 152, 122, 4, 153, 123], [29, 74, 46, 14, 75, 47], [49, 54, 24, 10, 55, 25], [24, 45, 15, 46, 46, 16],
+            [4, 152, 122, 18, 153, 123], [13, 74, 46, 32, 75, 47], [48, 54, 24, 14, 55, 25], [42, 45, 15, 32, 46, 16],
+            [20, 147, 117, 4, 148, 118], [40, 75, 47, 7, 76, 48], [43, 54, 24, 22, 55, 25], [10, 45, 15, 67, 46, 16],
+            [19, 148, 118, 6, 149, 119], [18, 75, 47, 31, 76, 48], [34, 54, 24, 34, 55, 25], [20, 45, 15, 61, 46, 16]
         ];
 
         function getRsBlockTable(typeNumber, errorCorrectLevel) {
@@ -1718,7 +1717,7 @@ const QRCode = (function() {
         return { getRSBlocks };
     })();
 
-    const QRUtil = (function() {
+    const QRUtil = (function () {
         const QRMaskPattern = {
             PATTERN000: 0,
             PATTERN001: 1,
@@ -1917,21 +1916,21 @@ const QRCode = (function() {
         this.dataList = [];
     }
 
-    QRCodeImpl.prototype.addData = function(data) {
+    QRCodeImpl.prototype.addData = function (data) {
         const newData = new QR8BitByte(data);
         this.dataList.push(newData);
         this.dataCache = null;
     };
-    QRCodeImpl.prototype.isDark = function(row, col) {
+    QRCodeImpl.prototype.isDark = function (row, col) {
         if (row < 0 || this.moduleCount <= row || col < 0 || this.moduleCount <= col) {
             throw new Error(`${row},${col}`);
         }
         return this.modules[row][col];
     };
-    QRCodeImpl.prototype.getModuleCount = function() {
+    QRCodeImpl.prototype.getModuleCount = function () {
         return this.moduleCount;
     };
-    QRCodeImpl.prototype.make = function() {
+    QRCodeImpl.prototype.make = function () {
         if (this.typeNumber < 1) {
             let typeNumber = 1;
             for (typeNumber = 1; typeNumber < 40; typeNumber++) {
@@ -1954,7 +1953,7 @@ const QRCode = (function() {
         this.makeImpl(false, this.getBestMaskPattern());
     };
 
-    QRCodeImpl.prototype.makeImpl = function(test, maskPattern) {
+    QRCodeImpl.prototype.makeImpl = function (test, maskPattern) {
         this.moduleCount = this.typeNumber * 4 + 17;
         this.modules = new Array(this.moduleCount);
         for (let row = 0; row < this.moduleCount; row++) {
@@ -1978,7 +1977,7 @@ const QRCode = (function() {
         this.mapData(this.dataCache, maskPattern);
     };
 
-    QRCodeImpl.prototype.setupPositionProbePattern = function(row, col) {
+    QRCodeImpl.prototype.setupPositionProbePattern = function (row, col) {
         for (let r = -1; r <= 7; r++) {
             if (row + r <= -1 || this.moduleCount <= row + r) continue;
             for (let c = -1; c <= 7; c++) {
@@ -1994,7 +1993,7 @@ const QRCode = (function() {
         }
     };
 
-    QRCodeImpl.prototype.getBestMaskPattern = function() {
+    QRCodeImpl.prototype.getBestMaskPattern = function () {
         let minLostPoint = 0;
         let pattern = 0;
         for (let i = 0; i < 8; i++) {
@@ -2008,7 +2007,7 @@ const QRCode = (function() {
         return pattern;
     };
 
-    QRCodeImpl.prototype.setupTimingPattern = function() {
+    QRCodeImpl.prototype.setupTimingPattern = function () {
         for (let r = 8; r < this.moduleCount - 8; r++) {
             if (this.modules[r][6] !== null) continue;
             this.modules[r][6] = r % 2 === 0;
@@ -2019,7 +2018,7 @@ const QRCode = (function() {
         }
     };
 
-    QRCodeImpl.prototype.setupPositionAdjustPattern = function() {
+    QRCodeImpl.prototype.setupPositionAdjustPattern = function () {
         const pos = QRUtil.getPatternPosition(this.typeNumber);
         for (let i = 0; i < pos.length; i++) {
             for (let j = 0; j < pos.length; j++) {
@@ -2039,7 +2038,7 @@ const QRCode = (function() {
         }
     };
 
-    QRCodeImpl.prototype.setupTypeNumber = function(test) {
+    QRCodeImpl.prototype.setupTypeNumber = function (test) {
         const bits = QRUtil.getBCHTypeNumber(this.typeNumber);
         for (let i = 0; i < 18; i++) {
             const mod = (!test && ((bits >> i) & 1) === 1);
@@ -2051,7 +2050,7 @@ const QRCode = (function() {
         }
     };
 
-    QRCodeImpl.prototype.setupTypeInfo = function(test, maskPattern) {
+    QRCodeImpl.prototype.setupTypeInfo = function (test, maskPattern) {
         const data = (this.errorCorrectLevel << 3) | maskPattern;
         const bits = QRUtil.getBCHTypeInfo(data);
         for (let i = 0; i < 15; i++) {
@@ -2069,7 +2068,7 @@ const QRCode = (function() {
         this.modules[this.moduleCount - 8][8] = !test;
     };
 
-    QRCodeImpl.prototype.mapData = function(data, maskPattern) {
+    QRCodeImpl.prototype.mapData = function (data, maskPattern) {
         let inc = -1;
         let row = this.moduleCount - 1;
         let bitIndex = 7;
@@ -2106,7 +2105,7 @@ const QRCode = (function() {
     QRCodeImpl.PAD0 = 0xEC;
     QRCodeImpl.PAD1 = 0x11;
 
-    QRCodeImpl.createData = function(typeNumber, errorCorrectLevel, dataList) {
+    QRCodeImpl.createData = function (typeNumber, errorCorrectLevel, dataList) {
         const rsBlocks = QRRSBlock.getRSBlocks(typeNumber, errorCorrectLevel);
         const buffer = new QRBitBuffer();
         for (let i = 0; i < dataList.length; i++) {
@@ -2138,7 +2137,7 @@ const QRCode = (function() {
         return QRCodeImpl.createBytes(buffer, rsBlocks);
     };
 
-    QRCodeImpl.createBytes = function(buffer, rsBlocks) {
+    QRCodeImpl.createBytes = function (buffer, rsBlocks) {
         let offset = 0;
         let maxDcCount = 0;
         let maxEcCount = 0;
@@ -3398,15 +3397,15 @@ function playNoiseSound(duration, volume = 0.5) {
 const BINGO_PRESETS = {
     numbers_1_30: {
         name: 'Numbers 1-30',
-        words: Array.from({length: 30}, (_, i) => String(i + 1))
+        words: Array.from({ length: 30 }, (_, i) => String(i + 1))
     },
     numbers_1_50: {
         name: 'Numbers 1-50',
-        words: Array.from({length: 50}, (_, i) => String(i + 1))
+        words: Array.from({ length: 50 }, (_, i) => String(i + 1))
     },
     numbers_1_100: {
         name: 'Numbers 1-100',
-        words: Array.from({length: 100}, (_, i) => String(i + 1))
+        words: Array.from({ length: 100 }, (_, i) => String(i + 1))
     },
     multiplication: {
         name: 'Multiplication Facts',

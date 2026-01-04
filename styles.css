@@ -1,5 +1,9 @@
 /* ===== CSS Variables ===== */
 :root {
+    --topbar-height: 64px;
+}
+
+:root {
     /* Dark theme (default) */
     --bg-primary: #1a1a2e;
     --bg-secondary: #16213e;
@@ -37,13 +41,16 @@
 }
 
 /* ===== Reset & Base ===== */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
 
-html, body {
+html,
+body {
     height: 100%;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
     background: var(--bg-primary);
@@ -57,7 +64,9 @@ button {
     font-size: inherit;
 }
 
-input, select, textarea {
+input,
+select,
+textarea {
     font-family: inherit;
     font-size: inherit;
 }
@@ -81,7 +90,12 @@ input, select, textarea {
 }
 
 .sidebar-header {
-    padding: 1.5rem;
+    height: var(--topbar-height);
+    min-height: var(--topbar-height);
+    padding: 0 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     border-bottom: 1px solid var(--border);
 }
 
@@ -89,12 +103,13 @@ input, select, textarea {
     font-size: 1.25rem;
     font-weight: 700;
     color: var(--text-primary);
-    margin-bottom: 0.25rem;
+    margin-bottom: 0.15rem;
 }
 
 .tagline {
     font-size: 0.8rem;
     color: var(--text-muted);
+    line-height: 1.2;
 }
 
 .nav-list {
@@ -205,10 +220,12 @@ input, select, textarea {
 }
 
 #tool-header {
+    height: var(--topbar-height);
+    min-height: var(--topbar-height);
+    padding: 0 1.5rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem 1.5rem;
     background: var(--bg-secondary);
     border-bottom: 1px solid var(--border);
 }
@@ -322,12 +339,14 @@ textarea {
 
 /* Fix dropdown options visibility */
 select {
-    background-color: #16213e; /* Fallback solid color */
+    background-color: #16213e;
+    /* Fallback solid color */
     background-color: var(--bg-secondary);
 }
 
 select option {
-    background-color: #16213e; /* Fallback solid color for dark mode */
+    background-color: #16213e;
+    /* Fallback solid color for dark mode */
     color: #ffffff;
     padding: 0.5rem;
 }
@@ -613,6 +632,7 @@ textarea {
         transform: rotateX(360deg) scale(0.5);
         opacity: 0;
     }
+
     100% {
         transform: rotateX(0) scale(1);
         opacity: 1;
@@ -983,19 +1003,43 @@ input[type="range"]::-moz-range-thumb {
 
 /* ===== Animations ===== */
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 @keyframes pulse {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.05); }
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
 }
 
 @keyframes shake {
-    0%, 100% { transform: translateX(0); }
-    25% { transform: translateX(-5px); }
-    75% { transform: translateX(5px); }
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    25% {
+        transform: translateX(-5px);
+    }
+
+    75% {
+        transform: translateX(5px);
+    }
 }
 
 .animate-fade-in {
@@ -1236,8 +1280,15 @@ input[type="range"]::-moz-range-thumb {
 }
 
 @keyframes teamPulse {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.02); }
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.02);
+    }
 }
 
 .team-name {
@@ -1378,9 +1429,17 @@ input[type="range"]::-moz-range-thumb {
     color: #22c55e;
 }
 
-.traffic-signal.active.red { box-shadow: 0 0 60px #ef4444; }
-.traffic-signal.active.yellow { box-shadow: 0 0 60px #fbbf24; }
-.traffic-signal.active.green { box-shadow: 0 0 60px #22c55e; }
+.traffic-signal.active.red {
+    box-shadow: 0 0 60px #ef4444;
+}
+
+.traffic-signal.active.yellow {
+    box-shadow: 0 0 60px #fbbf24;
+}
+
+.traffic-signal.active.green {
+    box-shadow: 0 0 60px #22c55e;
+}
 
 .signal-label {
     font-size: 2rem;
@@ -1733,8 +1792,15 @@ input[type="range"]::-moz-range-thumb {
 }
 
 @keyframes soundPulse {
-    0%, 100% { box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.4); }
-    50% { box-shadow: 0 0 20px 10px rgba(74, 222, 128, 0.2); }
+
+    0%,
+    100% {
+        box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.4);
+    }
+
+    50% {
+        box-shadow: 0 0 20px 10px rgba(74, 222, 128, 0.2);
+    }
 }
 
 .sound-btn .icon {

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +9,7 @@
     <title>K12 Tools - Free Classroom Tools</title>
     <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
     <div id="app">
         <!-- Left Navigation -->
@@ -33,7 +35,8 @@
                     <span class="icon">❤️</span>
                     <span>Donate</span>
                 </button>
-                <p class="attribution">A <a href="https://www.littlesprucelabs.com/" target="_blank" rel="noopener">Little Spruce Labs</a> project.</p>
+                <p class="attribution">A <a href="https://www.littlesprucelabs.com/" target="_blank"
+                        rel="noopener">Little Spruce Labs</a> project.</p>
             </div>
         </nav>
 
@@ -42,7 +45,7 @@
             <header id="tool-header">
                 <div class="header-left">
                     <button id="menu-toggle" class="menu-toggle" aria-label="Toggle menu">☰</button>
-                    <h2 id="tool-title">Welcome</h2>
+                    <h2 id="tool-title"></h2>
                 </div>
                 <div class="header-right">
                     <button id="fullscreen-btn" class="control-btn" title="Fullscreen (Projector Mode)">
@@ -88,25 +91,30 @@
                     <button class="close-modal" aria-label="Close">&times;</button>
                 </div>
                 <div class="modal-body">
-                    <p class="idea-intro">K12 Tools is built based on real classroom needs. If you have an idea for a tool that would help you or your students, we'd love to hear it!</p>
+                    <p class="idea-intro">K12 Tools is built based on real classroom needs. If you have an idea for a
+                        tool that would help you or your students, we'd love to hear it!</p>
                     <form id="idea-form">
                         <input type="text" name="company" tabindex="-1" autocomplete="off" hidden>
                         <div class="form-group">
                             <label for="idea-title">Idea Title <span class="required">*</span></label>
-                            <input type="text" id="idea-title" name="title" required placeholder="e.g., Classroom Seating Randomizer">
+                            <input type="text" id="idea-title" name="title" required
+                                placeholder="e.g., Classroom Seating Randomizer">
                         </div>
                         <div class="form-group">
                             <label for="idea-description">Description <span class="required">*</span></label>
-                            <textarea id="idea-description" name="description" required rows="4" placeholder="Describe the tool and how it would help in the classroom..."></textarea>
+                            <textarea id="idea-description" name="description" required rows="4"
+                                placeholder="Describe the tool and how it would help in the classroom..."></textarea>
                         </div>
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="idea-grade">Grade Level(s)</label>
-                                <input type="text" id="idea-grade" name="gradeLevel" placeholder="e.g., K-5, Middle School">
+                                <input type="text" id="idea-grade" name="gradeLevel"
+                                    placeholder="e.g., K-5, Middle School">
                             </div>
                             <div class="form-group">
                                 <label for="idea-subject">Subject</label>
-                                <input type="text" id="idea-subject" name="subject" placeholder="e.g., Math, All Subjects">
+                                <input type="text" id="idea-subject" name="subject"
+                                    placeholder="e.g., Math, All Subjects">
                             </div>
                         </div>
                         <div class="form-group">
@@ -127,4 +135,5 @@
     <!-- Audio for timer/alerts (generated programmatically) -->
     <script src="app.js"></script>
 </body>
+
 </html>
